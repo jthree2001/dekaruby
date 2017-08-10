@@ -4,8 +4,8 @@ class CreateElements < ActiveRecord::Migration[5.1]
       t.string :entity_id
       t.string :friendly_name
       t.string :location
-      t.bool :state
-      t.bool :denizen_id
+      t.boolean :state
+      t.integer :denizen_id
 
       t.timestamps
     end
