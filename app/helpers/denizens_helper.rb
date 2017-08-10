@@ -1,0 +1,2 @@
+module DenizensHelper
+end

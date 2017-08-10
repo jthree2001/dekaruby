@@ -1,0 +1,2 @@
+class Denizen < ApplicationRecord
+end

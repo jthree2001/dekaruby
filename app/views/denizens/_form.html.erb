@@ -1,0 +1,27 @@
+<%= form_with(model: denizen, local: true) do |form| %>
+  <% if denizen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(denizen.errors.count, "error") %> prohibited this denizen from being saved:</h2>
+
+      <ul>
+      <% denizen.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :full_name %>
+    <%= form.text_field :full_name, id: :denizen_full_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname, id: :denizen_nickname %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

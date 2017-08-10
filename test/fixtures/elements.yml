@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entity_id: MyString
+  friendly_name: MyString
+  state: 
+
+two:
+  entity_id: MyString
+  friendly_name: MyString
+  state: 
