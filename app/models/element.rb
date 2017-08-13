@@ -1,5 +1,5 @@
 class Element < ApplicationRecord
-  belongs_to :denizen
+  # belongs_to :denizen
 
   def owner_name
     unless self.denizen_id.blank?
@@ -23,12 +23,12 @@ class Element < ApplicationRecord
     get_homeassistant_creds
     url_builder = "#{@homeassistant_info[:url]}:#{@homeassistant_info[:port]}/api/states/#{self.entity_id}"
 
-    return api_call_get(url_builder)
+    return JSON.parse(api_call_get(url_builder))
   end
 
   def get_simple_state
     state_hash = get_state
-    return state_hash[:state]
+    return state_hash["state"]
   end
 
   def set_state(state, extra_states:nil)
@@ -52,8 +52,9 @@ class Element < ApplicationRecord
     http = Net::HTTP.new(uri.host, uri.port)
     http['x-ha-access'] = @homeassistant_info[:password] unless @homeassistant_info[:password].blank?
     request = Net::HTTP::Get.new(uri.request_uri)
-    return http.request(request)
+    return http.request(request).read_body
   end
 
   def api_call_post()
+  end
 end
