@@ -22,7 +22,9 @@ class DenizensController < ApplicationController
   end
 
   def startworker
-    Delayed::Job.enqueue(EventListener.new)
+    require "#{Rails.root}/lib/workers/homeassistantbase.rb"
+    Dir["#{Rails.root}/lib/workers/homeassistant/*.rb"].each {|file| require file }
+    Delayed::Job.enqueue(EventListener.new())
     flash[:notice] = "Test run successfully created"
     redirect_to root_path
   end

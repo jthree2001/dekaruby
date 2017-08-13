@@ -10,6 +10,7 @@ gem "em-eventsource", "~> 0.2.0"
 
 # Delayed jobs for Async and scaling
 gem 'delayed_job_active_record'
+gem "delayed_job_web"
 
 # Bootstrap gem
 gem 'bootstrap-sass', '~> 3.2.0'
