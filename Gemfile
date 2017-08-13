@@ -14,6 +14,8 @@ gem 'delayed_job_active_record'
 # Bootstrap gem
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'jquery-rails'
+gem 'turbolinks'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
