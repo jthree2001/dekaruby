@@ -21,6 +21,12 @@ class DenizensController < ApplicationController
   def edit
   end
 
+  def startworker
+    Delayed::Job.enqueue(EventListener.new)
+    flash[:notice] = "Test run successfully created"
+    redirect_to root_path
+  end
+
   # POST /denizens
   # POST /denizens.json
   def create
