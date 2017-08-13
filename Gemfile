@@ -5,9 +5,15 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Event Source for listening to homeassistant
 gem "em-eventsource", "~> 0.2.0"
 
+# Delayed jobs for Async and scaling
 gem 'delayed_job_active_record'
+
+# Bootstrap gem
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
