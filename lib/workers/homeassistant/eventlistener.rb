@@ -17,6 +17,14 @@ class EventListener < HomeAssistantBase
   end
 
   def react(message)
-    puts "new message: #{message}"
+    unless message == "new message: ping"
+      parsed = JSON.parse(message)
+      type = parsed["data"]["entity_id"].split(".")[0]
+      if type == "device_tracker"
+        Delayed::Job.enqueue(DeviceTracker.new(message))
+      end
+    else
+      puts "ping received"
+    end
   end
 end

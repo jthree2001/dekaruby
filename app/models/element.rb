@@ -39,6 +39,20 @@ class Element < ApplicationRecord
     body_builder += "}"
   end
 
+  def set_owner_location(location)
+    unless self.denizen_id.blank?
+      owner = Denizen.find(self.denizen_id)
+      owner.set_location(location)
+      if owner.save
+        return true
+      else
+        return false
+      end
+    else
+      return nil
+    end
+  end
+
   private
   def get_homeassistant_creds
     @homeassistant_info = { url: Rails.application.secrets.homeassistant[:url],

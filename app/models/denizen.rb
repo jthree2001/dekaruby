@@ -7,4 +7,11 @@ class Denizen < ApplicationRecord
       return false
     end
   end
+
+  def set_location(location)
+    self.location = location
+    if location == "home"
+      # Do something here to unlock door
+    end
+  end
 end
