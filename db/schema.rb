@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812232126) do
+ActiveRecord::Schema.define(version: 20170818012916) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
@@ -33,13 +33,14 @@ ActiveRecord::Schema.define(version: 20170812232126) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "access"
   end
 
   create_table "elements", force: :cascade do |t|
     t.string "entity_id"
     t.string "friendly_name"
     t.string "location"
-    t.boolean "state"
+    t.string "state"
     t.integer "denizen_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
