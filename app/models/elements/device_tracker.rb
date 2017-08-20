@@ -1,5 +1,9 @@
 class DeviceTracker < Element
 
+  def self.model_name
+    Element.model_name
+  end
+  
   def owner_name
     unless self.denizen_id.blank?
       return Denizen.find(self.denizen_id).full_name
