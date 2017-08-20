@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   match "/delayed_job" => DelayedJobWeb, :anchor => false, :via => [:get, :post]
   resources :denizens
   resources :landing
+  resources :elements
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

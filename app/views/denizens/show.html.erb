@@ -10,5 +10,10 @@
   <%= @denizen.nickname %>
 </p>
 
+<p>
+  <strong>Access Level:</strong>
+  <%= @denizen.access %>
+</p>
+
 <%= link_to 'Edit', edit_denizen_path(@denizen) %> |
 <%= link_to 'Back', denizens_path %>

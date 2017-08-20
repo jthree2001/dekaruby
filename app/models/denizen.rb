@@ -22,14 +22,15 @@ class Denizen < ApplicationRecord
   private
   def access_level
     return 1 if self.access == "admin"
+    return 0
   end
-  
+
   def unlock_doors
     url_builder = "#{Rails.application.secrets.homeassistant[:url]}:#{Rails.application.secrets.homeassistant[:port]}/api/services/lock/unlock"
 
     uri = URI.parse(url_builder)
     http = Net::HTTP.new(uri.host, uri.port)
-    http['x-ha-access'] = @homeassistant_info[:password] unless @homeassistant_info[:password].blank?
+    http['x-ha-access'] = Rails.application.secrets.homeassistant[:password] unless Rails.application.secrets.homeassistant[:password].blank?
     header = {'Content-Type': 'text/json'}
     request = Net::HTTP::Post.new(uri.request_uri, header)
     # request.body = user.to_json

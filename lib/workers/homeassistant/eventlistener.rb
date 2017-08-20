@@ -17,9 +17,11 @@ class EventListener < HomeAssistantBase
   end
 
   def react(message)
-    unless message == "new message: ping"
+    puts "----#{message}-----"
+    unless message == "ping"
       parsed = JSON.parse(message)
       unless Element.where(:entity_id => parsed["data"]["entity_id"]).blank?
+        return false if parsed["data"]["entity_id"].blank?
         type = parsed["data"]["entity_id"].split(".")[0]
         if type == "device_tracker"
           Delayed::Job.enqueue(DeviceTracker.new(message))
@@ -27,7 +29,6 @@ class EventListener < HomeAssistantBase
       else
         element = Element.new()
         element.entity_id = parsed["data"]["entity_id"]
-        element.state = parsed["data"]["new_state"]["state"]
         element.save
       end
     else

@@ -1,5 +1,6 @@
 class Element < ApplicationRecord
   # belongs_to :denizen
+  scope :Amplitude, -> { where(connector_ypte: "sthis thing")}
 
   def owner_name
     unless self.denizen_id.blank?
@@ -39,6 +40,19 @@ class Element < ApplicationRecord
     body_builder += "}"
   end
 
+  def set_location(location)
+    set_owner_location(location)
+    self.location = location
+    self.save
+  end
+
+  private
+  def get_homeassistant_creds
+    @homeassistant_info = { url: Rails.application.secrets.homeassistant[:url],
+                            port: Rails.application.secrets.homeassistant[:port],
+                            password: Rails.application.secrets.homeassistant[:password]}
+  end
+
   def set_owner_location(location)
     unless self.denizen_id.blank?
       owner = Denizen.find(self.denizen_id)
@@ -51,13 +65,6 @@ class Element < ApplicationRecord
     else
       return nil
     end
-  end
-
-  private
-  def get_homeassistant_creds
-    @homeassistant_info = { url: Rails.application.secrets.homeassistant[:url],
-                            port: Rails.application.secrets.homeassistant[:port],
-                            password: Rails.application.secrets.homeassistant[:password]}
   end
 
   def api_call_get(url)

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @element.friendly_name %>
+</p>
+
+<p>
+  <strong>Entity id:</strong>
+  <%= @element.entity_id %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @element.location %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @element.state %>
+</p>
+
+<p>
+  <strong>Denizen id:</strong>
+  <%= @element.denizen_id %>
+</p>
+
+<%= link_to 'Edit', edit_element_path(@element) %> |
+<%= link_to 'Back', elements_path %>

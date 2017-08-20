@@ -69,6 +69,6 @@ class DenizensController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def denizen_params
-      params.require(:denizen).permit(:full_name, :nickname)
+      params.require(:denizen).permit(:full_name, :nickname, :access)
     end
 end
