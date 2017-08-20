@@ -16,12 +16,20 @@ class Denizen < ApplicationRecord
   end
 
   def give_access
-    unlock_doors if access_level > 0
+    return unlock_doors if access_level == 2
+    if self.access_level == 1
+      Denizen.all.each do |e|
+        if e.access_level > 1
+          return unlock_doors if e.location == "home"
+        end
+      end
+    end
   end
 
   private
   def access_level
-    return 1 if self.access == "admin"
+    return 2 if self.access == "admin"
+    return 1 if self.access == "guest"
     return 0
   end
 

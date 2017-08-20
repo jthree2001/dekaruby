@@ -1,6 +1,19 @@
 class Element < ApplicationRecord
   # belongs_to :denizen
-  # scope :DeviceTracker, -> { where(element_: "device_tracker")}
+  scope :DeviceTracker, -> { where(element_type: "DeviceTracker")}
+  scope :Automation, -> { where(element_type: "Automation")}
+  scope :BinarySensor, -> { where(element_type: "BinarySensor")}
+  scope :Climate, -> { where(element_type: "Climate")}
+  scope :Configurator, -> { where(element_type: "Configurator")}
+  scope :Group, -> { where(element_type: "Group")}
+  scope :Light, -> { where(element_type: "Light")}
+  scope :MediaPlayer, -> { where(element_type: "MediaPlayer")}
+  scope :Scene, -> { where(element_type: "Scene")}
+  scope :Sensor, -> { where(element_type: "Sensor")}
+  scope :Sun, -> { where(element_type: "Sun")}
+  scope :Switch, -> { where(element_type: "Switch")}
+  scope :Updater, -> { where(element_type: "Updater")}
+  scope :Zone, -> { where(element_type: "Zone")}
   self.inheritance_column = :element_type
 
   def get_history(timestamp: nil)
