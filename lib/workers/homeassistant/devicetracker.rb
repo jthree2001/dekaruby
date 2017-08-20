@@ -1,4 +1,4 @@
-class DeviceTracker < HomeAssistantBase
+class DeviceTrackerWorker < HomeAssistantBase
 
   def initialize(message)
     @message = JSON.parse(message)

@@ -1,6 +1,7 @@
 class Element < ApplicationRecord
   # belongs_to :denizen
-  scope :DeviceTracker, -> { where(entity_id.split(".")[0]: "device_tracker")}
+  # scope :DeviceTracker, -> { where(element_: "device_tracker")}
+  self.inheritance_column = :element_type
 
   def owner_name
     unless self.denizen_id.blank?

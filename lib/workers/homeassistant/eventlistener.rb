@@ -23,12 +23,16 @@ class EventListener < HomeAssistantBase
       unless Element.where(:entity_id => parsed["data"]["entity_id"]).blank?
         return false if parsed["data"]["entity_id"].blank?
         type = parsed["data"]["entity_id"].split(".")[0]
+        element = Element.where(:entity_id => parsed["data"]["entity_id"]).first
+        element.element_type = type.camelize
+        element.save
         if type == "device_tracker"
-          Delayed::Job.enqueue(DeviceTracker.new(message))
+          Delayed::Job.enqueue(DeviceTrackerWorker.new(message))
         end
       else
         element = Element.new()
         element.entity_id = parsed["data"]["entity_id"]
+        element.element_type = parsed["data"]["entity_id"].split(".")[0] if parsed["data"].key?("entity_id")
         element.save
       end
     else
