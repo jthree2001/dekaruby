@@ -32,7 +32,7 @@ class EventListener < HomeAssistantBase
       else
         element = Element.new()
         element.entity_id = parsed["data"]["entity_id"]
-        element.element_type = parsed["data"]["entity_id"].split(".")[0] unless parsed["data"]["entity_id"].blank?
+        element.element_type = parsed["data"]["entity_id"].split(".")[0].camelize unless parsed["data"]["entity_id"].blank?
         element.save
       end
     else
