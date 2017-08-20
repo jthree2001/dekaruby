@@ -1,6 +1,6 @@
 class Element < ApplicationRecord
   # belongs_to :denizen
-  scope :Amplitude, -> { where(connector_ypte: "sthis thing")}
+  scope :DeviceTracker, -> { where(entity_id.split(".")[0]: "device_tracker")}
 
   def owner_name
     unless self.denizen_id.blank?
