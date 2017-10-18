@@ -1,5 +1,5 @@
 class EventListener < HomeAssistantBase
-
+  
   def initialize()
     super
   end
@@ -20,20 +20,17 @@ class EventListener < HomeAssistantBase
     puts "----#{message}-----"
     unless message == "ping"
       parsed = JSON.parse(message)
+      return false if parsed["data"]["entity_id"].blank?
       unless Element.where(:entity_id => parsed["data"]["entity_id"]).blank?
-        return false if parsed["data"]["entity_id"].blank?
         type = parsed["data"]["entity_id"].split(".")[0]
-        element = Element.where(:entity_id => parsed["data"]["entity_id"]).first
-        element.element_type = type.camelize
-        element.save
         if type == "device_tracker"
           Delayed::Job.enqueue(DeviceTrackerWorker.new(message))
         end
       else
         element = Element.new()
         element.entity_id = parsed["data"]["entity_id"]
-        element.element_type = parsed["data"]["entity_id"].split(".")[0].camelize unless parsed["data"]["entity_id"].blank?
-        element.save
+        element.type = parsed["data"]["entity_id"].split(".")[0].camelize unless parsed["data"]["entity_id"].blank?
+        element.save unless parsed["data"]["entity_id"].blank?
       end
     else
       puts "ping received"

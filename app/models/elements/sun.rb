@@ -3,7 +3,7 @@ class Sun < Element
     Element.model_name
   end
 
-  def hello
-    puts "hello world"
+  def set_type
+    self.type = "Sun"
   end
 end

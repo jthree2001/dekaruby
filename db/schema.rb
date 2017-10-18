@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20170820171112) do
     t.integer "denizen_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "element_type"
+    t.string "type"
   end
 
 end

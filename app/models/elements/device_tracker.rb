@@ -3,7 +3,7 @@ class DeviceTracker < Element
   def self.model_name
     Element.model_name
   end
-  
+
   def owner_name
     unless self.denizen_id.blank?
       return Denizen.find(self.denizen_id).full_name
@@ -16,6 +16,10 @@ class DeviceTracker < Element
     set_owner_location(location)
     self.location = location
     self.save
+  end
+
+  def set_type
+    self.type = "DeviceTracker"
   end
 
   private
