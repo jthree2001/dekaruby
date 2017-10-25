@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Descendants tracker for classes
+gem 'descendants_tracker', '~> 0.0.4'
+
 # Event Source for listening to homeassistant
 gem "em-eventsource", "~> 0.2.0"
 

@@ -75,6 +75,8 @@ GEM
       activerecord (> 3.0.0)
       delayed_job (> 2.0.3)
       sinatra (>= 1.4.4)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     em-eventsource (0.2.1)
       em-http-request (~> 1.0)
       eventmachine (~> 1.0)
@@ -221,6 +223,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   delayed_job_active_record
   delayed_job_web
+  descendants_tracker (~> 0.0.4)
   em-eventsource (~> 0.2.0)
   jbuilder (~> 2.5)
   jquery-rails
