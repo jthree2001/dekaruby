@@ -49,8 +49,8 @@ class Element < ApplicationRecord
     uri = URI.parse(url)
 
     http = Net::HTTP.new(uri.host, uri.port)
-    http['x-ha-access'] = @homeassistant_info[:password] unless @homeassistant_info[:password].blank?
     request = Net::HTTP::Get.new(uri.request_uri)
+    request.initialize_http_header({"x-ha-access" => @homeassistant_info[:password]}) unless @homeassistant_info[:password].blank?
     return http.request(request).read_body
   end
 
@@ -58,9 +58,13 @@ class Element < ApplicationRecord
     uri = URI.parse(url)
 
     http = Net::HTTP.new(uri.host, uri.port)
-    http['x-ha-access'] = @homeassistant_info[:password] unless @homeassistant_info[:password].blank?
-    request = Net::HTTP::Post.new(uri.request_uri)
-    
+    if @homeassistant_info[:password].blank?
+      request = Net::HTTP::Post.new(uri.request_uri)
+    else
+      #request["x-ha-access"] = @homeassistant_info[:password]}) unless @homeassistant_info[:password].blank?
+      request = Net::HTTP::Post.new(uri.request_uri, initheader: {'x-ha-access' => @homeassistant_info[:password]})
+    end
+
     request.body = requestbody
     return http.request(request).read_body
   end
